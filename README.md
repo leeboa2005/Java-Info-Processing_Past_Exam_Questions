@@ -534,34 +534,197 @@ if(i==5) {
 
 <hr>
 
-**21년 1회**<br>
+**21년 2회**<br>
+ (가)에 알맞은 예약어를 쓰시오.
 
 ```java
-
+	public class Main {
+   public static void main(String[] args){
+      System.out.print(Main.check(1));
+   }
+   
+  (가) String check (int num) {
+      return (num >= 0) ? "positive" : "negative";
+   }
+}
 ``` 
 
 <details>
 <summary>✅ 정답</summary>
-
+static
 </details>
 <br>
 
 🖋 **문제 풀이** <br><br>
+- check 메서드를 static으로 선언해야 main 메서드에서 클래스 이름으로 직접 호출할 수 있다.<br>
+- 이를 통해 Main 클래스의 check 메서드를 사용할 수 있다.<br>
 
+<hr> 
 
-
-**21년 1회**<br>
-
+**21년 2회**<br>
+출력 결과는? 
 ```java
-
+	public class ovr1 {
+	public static void main(String[] args){
+    	ovr1 a1 = new ovr1();
+        ovr2 a2 = new ovr2();
+        System.out.println(a1.sun(3,2) + a2.sun(3,2));
+    }
+    
+    int sun(int x, int y){
+    	return x + y;
+    }
+}
+class ovr2 extends ovr1 {
+ 
+	int sun(int x, int y){
+    	return x - y + super.sun(x,y);
+    }
+ 
+}
 ``` 
 
 <details>
 <summary>✅ 정답</summary>
-
+11
 </details>
 <br>
 
 🖋 **문제 풀이** <br><br>
+- `ovr1` 클래스의 `sun` 메서드는 `x + y`를 반환.
+- `ovr2` 클래스는 `ovr1`을 상속받고, `sun` 메서드를 오버라이드하여 `x - y + super.sun(x, y)`를 반환.
+- 따라서 `a1.sun(3, 2)` 결과는 5이고, `a2.sun(3, 2)` 결과는 6이므로, 최종 출력은 5 + 6(a1.sun(3,2) + a2.sun(3,2)) = 11.
 
+<hr> 
+
+**21년 3회😿**<br>
+출력 결과는? 
+```java
+class Connection {
+  private static Connection _inst = null;
+  private int count = 0;
+     public static Connection get() {
+      if(_inst == null) {
+      _inst = new Connection();
+      return _inst; 
+      }
+    return _inst;
+    }
+  public void count() { count ++; }
+  public int getCount() { return count; }
+}
+ 
+public class Main {
+  public static void main(String[] args) {
+    Connection conn1 = Connection.get();
+    conn1.count();
+    Connection conn2 = Connection.get();
+    conn2.count();
+    Connection conn3 = Connection.get();
+    conn3.count();
+    
+    System.out.print(conn1.getCount());
+  }
+}
+``` 
+
+<details>
+<summary>✅ 정답</summary>
+3
+</details>
+<br>
+
+🖋 **문제 풀이** <br><br>
+1. **Singleton 패턴**<br>
+- `Connection` 클래스는 오직 하나의 인스턴스만 생성되도록 설계되었습니다.<br>
+
+2. **`get()` 메서드**<br>
+- `_inst`가 `null`이면 새로운 `Connection` 객체를 생성하고, 그렇지 않으면 이미 생성된 객체를 반환합니다.<br>
+
+3. **`count()` 메서드**<br>
+- `count` 변수를 1 증가시킵니다.<br>
+
+실행과정 <br>
+
+```java
+Connection conn1 = Connection.get(); // 인스턴스 생성 (count: 0 → 1)
+conn1.count(); // count: 1  // count: 1 (첫 번째 호출)
+Connection conn2 = Connection.get();  // 이미 생성된 인스턴스 반환
+conn2.count(); // count: 2 // count: 2 (두 번째 호출)
+Connection conn3 = Connection.get(); // 같은 인스턴스 반환
+conn3.count(); // count: 3 count: 3 (세 번째 호출)
+
+System.out.print(conn1.getCount()); // 출력: 3
+
+```
+- 모든 count() 호출이 같은 인스턴스에서 이루어지므로, 최종 count 값은 3.
+
+<hr>
+
+**21년 3회**<br>
+출력 결과는? 
+
+```java
+	public class Main{
+ public static void main(String[] args) {
+  int a = 3, b = 4, c = 3, d = 5;
+  if((a == 2 | a == c) & !(c > d) & (1 == b ^ c != d)) {
+   a = b + c;
+    if(7 == b ^ c != a) {
+     System.out.println(a);
+    } else {
+    System.out.println(b);
+    }
+  } else {
+    a = c + d;
+    if(7 == c ^ d != a) {
+    System.out.println(a);
+    } else {
+    System.out.println(d);
+    }
+  }
+ }
+}
+``` 
+
+<details>
+<summary>✅ 정답</summary>
+7 
+</details>
+<br>
+
+🖋 **문제 풀이** <br><br>
+**1. 조건문 해석** 
+
+```java
+if((a == 2 | a == c) & !(c > d) & (1 == b ^ c != d)) {
+```
+- a == 2: false (3이 2와 같지 않음)<br>
+- a == c: true (3이 3과 같음)<br>
+- (a == 2 | a == c) )<br>
+- 조건식 확인: false | true → true (OR 연산자))<br><br>
+- !(c > d): true (3이 5보다 크지 않음)<br>
+- 1 == b: false (1이 4와 같지 않음)<br>
+- c != d: true (3이 5와 같지 않음)<br>
+- 1 == b ^ c != d<br>
+- 조건식 확인: false ^ true → true (XOR 연산자)<br><br>
+- 1 == b ^ c != d: true (false ^ true는 true)<br>
+- 전체 조건식 확인: true & true & true → true.
+
+**2. 최종 결론**
+
+```java
+a = b + c; // a = 4 + 3 = 7
+```
+
+**3. 다음 조건문**
+```java
+if(7 == b ^ c != a) {
+```
+- 7 == b: 7 == 4 → false
+- c != a: 3 != 7 → true
+- 7 == b ^ c != a: false ^ true → true
+- 따라서 System.out.println(a);가 실행되고, 최종적으로 7이 출력.
+
+<hr> 
 
