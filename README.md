@@ -908,8 +908,6 @@ obj.a + b = 5+ 56 = 61
 
 <hr>
 
-<hr>
-
 **22년 2회😿**<br>
 출력 결과는?
 
@@ -1000,9 +998,9 @@ public class Main {
 2. 값 할당<br>
 - for 루프를 사용해 tempArr의 각 인덱스에 0부터 3까지의 값을 할당.<br>
 
-4. 배열 반환<br>
+3. 배열 반환<br>
 - tempArr 배열을 반환.<br>
-- 
+
 4. 메인 메서드<br>
 - MakeArray를 호출해 intArr에 저장<br>
 - 다시 for 루프를 사용해 intArr의 모든 값을 출력<br>
@@ -1085,17 +1083,18 @@ public class Main {
 - Static.b = a;: Static.b에 10을 할당 → b는 이제 10.<br>
 
 3. 출력 결과 설명<br>
+
 3-1. System.out.println(Static.b++);<br>
 - 현재 Static.b는 10. 이를 출력하고 1 증가시킴 → 출력: 10.<br>
 
 3-2. System.out.println(st.b);:<br>
-st.b는 정적 변수, 현재 값은 11. → 출력: 11.<br>
+- st.b는 정적 변수, 현재 값은 11. → 출력: 11.<br>
 
 3-3.System.out.println(a);<br>
-메인 메서드의 지역 변수 a는 10. → 출력: 10.<br>
+- 메인 메서드의 지역 변수 a는 10. → 출력: 10.<br>
 
 3-4. System.out.println(st.a);<br>
-st.a는 인스턴스 변수, 기본값은 20. → 출력: 20.
+- st.a는 인스턴스 변수, 기본값은 20. → 출력: 20.
 
 <hr>
 
@@ -1129,70 +1128,6 @@ public class Main {
     Vehicle obj = new Car("Spark");
     System.out.print(obj.getName());
     }
-}
-``` 
-
-<details>
-<summary>✅ 정답</summary>
-Vehicle name : Spark
-</details>
-<br>
-
-🖋 **문제 풀이** <br><br>
-1. Vehicle 클래스<br>
-- 추상 클래스, getName(String val) 메서드가 추상.<br>
-- getName() 메서드는 name을 반환.<br>
-
-2. Car 클래스 (Vehicle 상속):<br>
-- 생성자에서 name을 "Spark"로 초기화.<br>
-- getName(String val)  메서드는 매개변수를 사용해 "Car name: "을 반환.<br>
-
-3. Main 클래스<br>
-- Car 객체를 생성하고 Vehicle 타입으로 참조.
-- obj.getName() 호출 시 Vehicle의 getName() 메서드 실행.
-
-이때 **추상 클래스**는 
-- abstract class Vehicle로 선언된 클래스는 직접 인스턴스를 만들 수 없음. 즉, Vehicle 타입의 객체를 생성할 수 없음.
-- 대신, Vehicle을 상속받은 구체적인 자식 클래스(예: Car)에서 구현을 제공해야 함.
-
-<hr>
-
-**23년 1회**<br>
-출력 결과는?(20년 3회 기출과 동일)
-
-```java
-	class Parent {
-int x = 100;
- 
-Parent() {
-this(500);
-}
-Parent(int x) {
-this.x = x;
-}
-int getX() {
-return x;
-}
-}
-class Child extends Parent {
-int x = 1000;
- 
-Child() {
-this(5000);
-}
- 
-Child(int x) {
-this.x = x;
-}
- 
- 
-}
- 
-public class Main {
-public static void main(String[] args) {
-Child obj = new Child();
-System.out.println(obj.getX());
-}
 }
 ``` 
 
@@ -1372,33 +1307,548 @@ class B extends A {
 
 <details>
 <summary>✅ 정답</summary>
-true
-false
-true
-true
+B 
+D 
+C 
+D
+D 
 </details>
 <br>
 
 🖋 **문제 풀이** <br><br>
-1. `str1 == str2`<br>
-- **결과**: `true`<br>
-- **설명**: `str1`과 `str2`는 리터럴 문자열로, 자바는 같은 문자열 리터럴을 공유하기 때문에 두 변수는 같은 메모리 주소를 가리킴.<br>
+1. main 메서드 실행<br>
+- A b = new B();로 B 객체를 생성하고, b는 B 객체를 가리킴.<br>
 
-2. `str1 == str3`<br>
-- **결과**: `false`<br>
-- **설명**: `str3`는 `new String("Programming")`을 사용하여 생성된 객체로, 새로운 메모리 공간에 할당됨. 그래서 `str1`과 `str3`는 서로 다른 객체를 가리키므로 `false`가 출력됨.<br>
+2. b.paint(); 호출<br>
+- B 클래스의 paint() 메서드가 실행됨.<br>
 
-3. `str1.equals(str3)`<br>
-- **결과**: `true`<br>
-- **설명**: `equals` 메서드는 두 객체의 내용이 같은지를 비교함. `str1`과 `str3`의 내용은 모두 `"Programming"`이므로 `true`가 출력됨.<br>
+3.super.draw(); 실행<br>
+- 부모 클래스 A의 draw() 메서드가 호출됨.<br>
+- System.out.print("B"); 출력 (B)<br>
+- 다음으로 A.draw()에서 draw();를 다시 호출.<br>
+- 이때 B 클래스의 draw()가 호출되어 System.out.print("D"); 출력 (D).<br>
 
-4. `str2.equals(str3)`<br>
-- **결과**: `true`<br>
-- **설명**: `str2`도 `str3`와 내용이 동일하므로, `equals` 메서드는 `true`를 반환함.<br>
+4. System.out.print("C"); 실행<br>
+C가 출력됨.<br>
+
+5. this.draw(); 실행<br>
+- B 클래스의 draw() 메서드가 호출되어 System.out.print("D"); 출력 (D).<br>
+
+6. b.draw(); 호출<br>
+- B 클래스의 draw() 메서드가 호출되어 다시 System.out.print("D"); 출력 (D).<br>
 
 요약<br>
-- `==` 연산자는 객체의 메모리 주소를 비교하고, `equals` 메서드는 객체의 내용을 비교함<br>
+B (부모의 draw() 호출)
+D (자식의 draw() 호출)
+C (B의 paint()에서)
+D (B의 paint()에서 this.draw() 호출)
+D (마지막으로 b.draw() 호출)
 
 <hr>
+
+**23년 3회**<br>
+다음 코드에서 오류가 발생하는 코드 라인수를 적으시오.
+
+```java
+	 class Person {
+	private String name;
+	public Person(String val) {
+		name = val;
+	}
+	public static String get() {
+		return name;
+	}
+	public void print() {
+		System.out.println(name);
+	}
+ }
+ public class Main {
+	public static void main(String[] args) {
+		Person obj = new Person("Kim");
+		obj.print();
+	}
+ }
+``` 
+
+<details>
+<summary>✅ 정답</summary>
+7 
+</details>
+<br>
+
+🖋 **문제 풀이** <br><br>
+**오류 원인** 
+- get() 메서드는 static 메서드로 정의되어 있어. static 메서드는 클래스의 인스턴스(객체)와 관련이 없기 때문에 인스턴스 변수인 name에 직접 접근할 수 없음.<br>
+- name은 Person 클래스의 인스턴스 변수이므로, **static 메서드에서는 사용할 수 없기 때문에 static 메서드에서 name을 참조하는 부분에서 오류가 발생함.**<br>
+
+- 오류 발생 부분
+
+```java 
+	public static String get() {
+		return name;
+	}
+
+```
+- 오류 수정
+
+```java 
+    // static을 제거하여 인스턴스 메서드로 변경
+    public String get() {
+        return name;
+    }
+
+```
+
+
+<hr>
+
+**23년 3회**<br>
+출력 결과는?(20년 4회 19번과 문제 동일)
+
+```java
+	class Parent {
+	int compute(int num) {
+		if(num <= 1)
+			return num;
+		return compute(num-1) + compute(num-2);
+	}
+}
+class Child extends Parent {
+	int compute(int num) {
+		if(num <= 1)
+			return num;
+		return compute(num-1) + compute(num-3);
+	}
+}
+public class Main {
+	public static void main(String args[]) {
+		Parent obj = new Child();
+		System.out.print(obj.compute(7));
+	}
+}
+``` 
+
+<details>
+<summary>✅ 정답</summary>
+2
+</details>
+<br>
+
+🖋 **문제 풀이** <br><br>
+1. 클래스 구조
+- Parent 클래스의 compute(int num) 메서드는 피보나치 수열을 계산 (num-1과 num-2를 사용).
+- Child 클래스의 compute(int num) 메서드는 다른 방식으로 계산 (num-1과 num-3을 사용).
+
+2. 다형성
+Parent obj = new Child();로 Child 객체를 생성했지만, obj는 Parent 타입으로 참조함.
+따라서 obj.compute(7); 호출 시 **Child 클래스의 compute(int num) 메서드가 실행됨.**
+
+<hr>
+
+### <h3 id="year24">📋24년 기출</h3>
+
+**24년 1회**<br>
+출력 결과는?(20년 4회 19번과 문제 동일)
+
+```java
+		class Connection {
+ 
+    private static Connection _inst = null;
+    private int count = 0;
+    
+    static public Connection get() {
+        if(_inst == null) {
+            _inst = new Connection();
+            return _inst;
+        }
+        return _inst;
+    }
+    
+    public void count() {
+         count++; 
+    }
+    
+    public int getCount() {
+         return count; 
+    }
+}
+ 
+ 
+public class main {  
+ 
+    public static void main(String[] args) {
+ 
+        Connection conn1 = Connection.get();
+        conn1.count();
+ 
+        Connection conn2 = Connection.get();
+        conn2.count();
+ 
+        Connection conn3 = Connection.get();
+        conn3.count();
+        
+        conn1.count();
+        System.out.print(conn1.getCount());
+    }
+ 
+}
+``` 
+
+<details>
+<summary>✅ 정답</summary>
+2
+</details>
+<br>
+
+🖋 **문제 풀이** <br><br>
+- Connection 클래스는 Singleton 패턴으로 설계되어 단 하나의 인스턴스만 생성됨.
+- count() 메서드를 호출할 때마다 count 값이 증가하여, 최종적으로 count는 4가 됨.
+- conn1.getCount()를 호출하면 현재 count 값인 4를 반환함.
+- 따라서 출력 결과는 4.
+
+<hr>
+
+**24년 1회**<br>
+실행순서를 나열 하시오.
+
+```java
+	class Parent {
+    int x, y;
+ 
+    Parent(int x, int y) { (가)
+        this.x=x;
+        this y=y;
+    }
+ 
+    int getT() { (나)
+        return x*y;
+    }
+}
+ 
+ 
+ 
+​class Child extend Parent {
+    int x;
+ 
+    Child (int x) { (다)
+        super(x+1, x);
+        this.x=x;
+    }
+ 
+    int getT(int n){ (라)
+        return super.getT()+n;
+    }
+}
+ 
+ 
+ 
+class Main {
+    public static void main(String[] args) { (마)
+        Parent parent = new Child(3); (바)
+        System.out.println(parent.getT()); (사)
+    }
+}
+``` 
+
+<details>
+<summary>✅ 정답</summary>
+바->다->가->사->나
+</details>
+<br>
+
+🖋 **문제 풀이** <br><br>
+- (마): main 메서드 시작.
+- (바): Child 객체 생성, Parent 생성자 호출.
+- (가): super() 호출로 Parent 초기화.
+- (사): getT() 호출, Child 객체에서 Parent의 메서드 실행.
+- (나): x * y 계산 후 결과 반환.
+
+<hr>
+
+
+**24년 1회**<br>
+출력 결과는?
+
+```java
+class classOne {
+    int a, b;
+ 
+    public classOne(int a, int b) {
+        this.a = a;
+        this.b = b;
+    }
+ 
+    public void print() {
+        System.out.println(a + b);
+    }
+ 
+}
+class classTwo extends classOne {
+    int po = 3;
+    
+    public classTwo(int i) {
+        super(i, i+1);
+    }
+ 
+    public void print() {
+        System.out.println(po*po);
+    }
+}
+ 
+public class main {  
+    public static void main(String[] args) {
+        classOne one = new classTwo(10);
+        one.print();
+    }
+}
+``` 
+
+<details>
+<summary>✅ 정답</summary>
+9
+</details>
+<br>
+
+🖋 **문제 풀이** <br><br>
+1. **클래스 구조**<br>
+   - **classOne**: a와 b를 초기화하는 생성자와 print() 메서드를 가짐.<br>
+   - **classTwo**: classOne을 상속받으며, po라는 변수를 가짐. print() 메서드를 오버라이드함.<br>
+
+2. **객체 생성**<br>
+   - **classOne one = new classTwo(10);**에서 classTwo 객체가 생성됨.<br>
+   - **(super(i, i+1))**: classTwo의 생성자에서 super(10, 11)이 호출되어 classOne의 생성자가 실행됨. 따라서 a = 10, b = 11로 초기화됨.<br>
+
+3. **메서드 호출**<br>
+   - **one.print();** 호출 시, **one은 classOne 타입이지만 실제로는 classTwo 인스턴스를 가리킴.** <br>
+   - 따라서 classTwo의 print() 메서드가 호출되어 `System.out.println(po * po);`가 실행됨.<br>
+   - po는 3이므로 3 * 3 = 9가 출력됨.
+
+<hr>
+
+**24년 2회**<br>
+출력 결과는?
+
+```java
+	class Main {
+    public static void main(String[] args) {
+        int[] a = new int[]{1, 2, 3, 4};
+        int[] b = new int[]{1, 2, 3, 4};
+        int[] c = new int[]{1, 2, 3};
+        
+        check(a, b);
+        check(a, c); 
+        check(b, c); 
+    }
+ 
+    public static void check(int[] a, int[] b) {
+        if (a==b) {
+            System.out.print("O");
+        }else{
+            System.out.print("N");
+        }
+        
+    }
+}
+``` 
+
+<details>
+<summary>✅ 정답</summary>
+NNN
+</details>
+<br>
+
+🖋 **문제 풀이** <br><br>
+- if (a == b)는 **두 배열의 참조(메모리 주소)를 비교**하는 것이므로, 서로 다른 배열 객체를 가리키기 때문에 false가 되어 "N"이 출력됨.
+<hr>
+
+
+**24년 2회**<br>
+출력 결과는?
+
+```java
+	class Main {
+    public static void main(String[] args) {
+        int[] a = new int[]{1, 2, 3, 4};
+        int[] b = new int[]{1, 2, 3, 4};
+        int[] c = new int[]{1, 2, 3};
+        
+        check(a, b);
+        check(a, c); 
+        check(b, c); 
+    }
+ 
+    public static void check(int[] a, int[] b) {
+        if (a==b) {
+            System.out.print("O");
+        }else{
+            System.out.print("N");
+        }
+        
+    }
+}
+``` 
+
+<details>
+<summary>✅ 정답</summary>
+NNN
+</details>
+<br>
+
+🖋 **문제 풀이** <br><br>
+- if (a == b)는 **두 배열의 참조(메모리 주소)를 비교**하는 것이므로, 서로 다른 배열 객체를 가리키기 때문에 false가 되어 "N"이 출력됨.
+<hr>
+
+
+**24년 2회**<br>
+출력 결과는?
+
+```java
+	class Main {
+    public static void main(String[] args) {
+        int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        ODDNumber OE = new ODDNumber();
+        System.out.print(OE.sum(a, true) + ", " + OE.sum(a, false));
+    }
+}
+ 
+interface Number {
+    int sum(int[] a, boolean odd);
+}
+ 
+class ODDNumber implements Number {
+    public int sum(int[] a, boolean odd) {
+        int result = 0;
+        for(int i=0; i < a.length; i++){
+            if((odd && a[i] % 2 != 0) || (!odd && a[i] % 2 == 0))
+                result += a[i];
+        }        
+        return result;
+    }    
+}
+``` 
+
+<details>
+<summary>✅ 정답</summary>
+25,20
+</details>
+<br>
+
+🖋 **문제 풀이** <br><br>
+1. **배열 생성**<br>
+   - `int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};`<br>
+   - 배열 `a`에는 1부터 9까지의 숫자가 있음.<br>
+
+2. **홀수의 합**<br>
+   - `OE.sum(a, true)` 호출<br>
+     - `odd`가 `true`이므로 홀수를 더함.<br>
+     - 홀수는 `1, 3, 5, 7, 9` → 합계: `25`
+
+3. **짝수의 합**<br>
+   - `OE.sum(a, false)` 호출<br>
+     - `odd`가 `false`이므로 짝수를 더함.<br>
+     - 짝수는 `2, 4, 6, 8` → 합계: `20`<br>
+
+4. **조건문 설명**<br>
+   - 조건문은 `odd` 값에 따라 홀수 또는 짝수를 선택적으로 더함.<br>
+   - `true`일 때는 홀수, `false`일 때는 짝수를 더함.<br>
+
+5. **결과 출력**<br>
+   - `System.out.print(OE.sum(a, true) + ", " + OE.sum(a, false));`에서<br>
+   - 결과는 `"25, 20"`이 됨.
+
+<hr>
+
+**24년 2회😿😿**<br>
+출력 결과는?
+
+```java
+	class Main {
+    public static void main(String[] args) {
+        String str = "abacabcd";
+        boolean[] seen = new boolean[256];
+        System.out.print(calculFn(str, str.length()-1, seen));
+    }
+ 
+    public static String calculFn(String str, int index, boolean[] seen) {
+        if(index < 0) return "";
+        char c = str.charAt(index);
+        String result = calculFn(str, index-1, seen);
+        if(!seen[c]) {
+            seen[c] = true;
+            return c + result;
+        }
+        return result;
+    }
+}
+``` 
+
+<details>
+<summary>✅ 정답</summary>
+bcba
+</details>
+<br>
+
+🖋 **문제 풀이** <br><br>
+## 문제 풀이
+
+1. **문자열 생성**<br>
+   - `String str = "abacabcd";`<br>
+
+2. **boolean 배열**<br>
+   - `boolean[] seen = new boolean[256];` <br>
+   - 이 배열은 각 문자가 이미 처리되었는지를 기록하기 위해 사용해. ASCII 문자의 개수는 256<br>
+
+3. **재귀 함수 호출**<br>
+   - `calculFn(str, str.length()-1, seen)`로 마지막 문자부터 처리 시작.<br>
+
+4. **재귀 함수의 동작**<br>
+   - **기본 케이스**: 인덱스가 0보다 작으면 빈 문자열 반환.<br>
+   - **문자 가져오기**: 현재 인덱스의 문자 `c`를 가져옴.<br>
+   - **재귀 호출**: 나머지 문자열을 처리.<br>
+   - **문자 처리**<br>
+     - 문자가 처음 등장하면 결과에 추가하고, `seen` 배열에 기록.<br>
+     - 이미 등장한 문자는 무시.<br>
+
+5. **결과**<br>
+   - 중복된 문자를 제외하고 마지막 등장 순서로 조합하여 `"dcba"`가 됨.
+
+<hr>
+
+**24년 2회😿**<br>
+출력 결과는?
+
+```java
+	class Main {
+    public static void main(String[] args) {
+        String str = "ITISTESTSTRING";
+        String[] result = str.split("T");
+        System.out.print(result[3]);
+    }
+}
+``` 
+
+<details>
+<summary>✅ 정답</summary>
+S
+</details>
+<br>
+
+🖋 **문제 풀이** <br><br>
+
+```java
+String[] result = str.split("T");
+```
+split("T")는 문자열을 'T'로 나누어 배열로 만듬.<br>
+- result[0]: "I"<br>
+- result[1]: "IS"<br>
+- result[2]: "ES"<br>
+- result[3]: "SINGLE" (T로 나누고 남은 부분)<br>
+- result[4]: "" (마지막 T 이후의 빈 문자열)
+
+```java
+System.out.print(result[3]);
+```
+- result[3]는 "SINGLE"의 첫 글자인 **S**를 출력.
+
 
 
